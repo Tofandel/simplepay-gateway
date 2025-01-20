@@ -177,7 +177,7 @@ class Gateway extends WC_Payment_Gateway
             $request->send();
 
             if (! $request->valid()) {
-                Log::info(sprintf(__('Request is invalid: %s', 'cone-simplepay'), $request->response('body')));
+                Log::error(sprintf(__('Request is invalid: %s', 'cone-simplepay'), $request->response('body')));
 
                 return [
                     'result' => 'failure',
@@ -190,7 +190,7 @@ class Gateway extends WC_Payment_Gateway
                 'redirect' => $request->body('paymentUrl'),
             ];
         } catch (Exception $e) {
-            Log::info(sprintf('%s: %s', $e->getMessage(), $payload));
+            Log::error(sprintf('%s: %s', $e->getMessage(), $payload));
 
             wc_add_notice($e->getMessage(), 'error');
         }
