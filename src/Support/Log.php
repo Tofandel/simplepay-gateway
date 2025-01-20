@@ -47,8 +47,8 @@ abstract class Log
      */
     public static function error($data)
     {
-        if (Config::isDebug()) {
+        //if (Config::isDebug()) {
             wc_get_logger()->error($data, static::$context);
-        }
+        //}
     }
 }
